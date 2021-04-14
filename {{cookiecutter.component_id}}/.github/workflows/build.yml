@@ -11,6 +11,9 @@ jobs:
 
     runs-on: ubuntu-20.04
 
+    env:
+      flex: "./devx-workflow-scripts/linux/flex"
+
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 11
@@ -18,4 +21,4 @@ jobs:
       with:
         java-version: 11
     - name: Build
-      run: ./devx-workflow-scripts/linux/flex build
+      run: $flex build

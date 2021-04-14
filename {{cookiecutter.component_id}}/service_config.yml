@@ -1,4 +1,2 @@
 build:
   command: ./mvnw spring-boot:build-image
-  env:
-  - ""
