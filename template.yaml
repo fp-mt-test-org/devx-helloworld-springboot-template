@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: Template
 metadata:
-  name: product-infra-springboot-template
-  title: Product Infra Spring Boot gRPC Service
+  name: ngif-springboot-template
+  title: NGIF Spring Boot gRPC Service
   description: Create a simple microservice using gRPC and Spring Boot Java
   tags:
     - recommended
