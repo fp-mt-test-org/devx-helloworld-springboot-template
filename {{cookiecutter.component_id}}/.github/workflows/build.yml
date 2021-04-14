@@ -18,4 +18,4 @@ jobs:
       with:
         java-version: 11
     - name: Build
-      run: ./devx-workflow-scripts/$(uname | tr '[:upper:]' '[:lower:]')/flex
+      run: ./devx-workflow-scripts/$(uname | tr '[:upper:]' '[:lower:]')/flex build
