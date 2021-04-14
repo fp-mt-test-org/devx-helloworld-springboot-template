@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+    aws-helm:
+        build: docker.cd
+        volumes:
+            - $PWD:$PWD
+            - /var/run/docker.sock:/var/run/docker.sock
+        working_dir: $PWD
+        stop_signal: SIGKILL
+        stdin_open: true
+        tty: true

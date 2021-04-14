@@ -1,0 +1,37 @@
+steps:
+    -   label: ":gradle: :package: :docker: :helm:"
+        key: "build"
+        command: ".buildkite/ci.sh"
+        agents:
+            queue: "infra2-ci"
+        plugins:
+            -   seek-oss/aws-sm#v2.2.1:
+                    env:
+                        BUILDKITE_ARTIFACTORY_USER:
+                            secret-id: "infra/ci/default/devx-helloworld-springboot/BUILDKITE_ARTIFACTORY_CREDENTIALS"
+                            json-key: ".FPOS_BUILDKITE_ARTIFACTORY_USER"
+                        BUILDKITE_ARTIFACTORY_PASSWORD:
+                            secret-id: "infra/ci/default/devx-helloworld-springboot/BUILDKITE_ARTIFACTORY_CREDENTIALS"
+                            json-key: ".FPOS_BUILDKITE_ARTIFACTORY_PASSWORD"
+            -   seek-oss/github-merged-pr#v1.1.2:
+                    mode: checkout
+            -   docker-compose#v3.7.0:
+                    run: gradle
+                    config: .buildkite/docker-compose.ci.yml
+                    shell: false
+                    mount-buildkite-agent: true
+                    env:
+                        - BUILDKITE_ARTIFACTORY_USER
+                        - BUILDKITE_ARTIFACTORY_PASSWORD
+                        - BUILDKITE_BRANCH
+                        - CD
+    -   label: 'Can this build be deployed'
+        depends_on:
+            -   step: build
+                allow_failure: false
+        command: |
+            if [ $$( buildkite-agent meta-data get "TRIGGER_CD" ) == "true" ]; then
+              buildkite-agent pipeline upload .buildkite/pipeline.trigger.yml
+            fi
+        agents:
+            queue: "infra2-ci"

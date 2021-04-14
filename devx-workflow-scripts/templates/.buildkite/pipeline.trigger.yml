@@ -1,0 +1,10 @@
+steps:
+    -   label: ":rocket:"
+        async: true
+        trigger: "{{ .Name }}-cd"
+        build:
+            commit: "$BUILDKITE_COMMIT"
+            branch: "$BUILDKITE_BRANCH"
+            message: "$BUILDKITE_MESSAGE"
+            env:
+                MANUAL_DEPLOY: ${CD:-false}
