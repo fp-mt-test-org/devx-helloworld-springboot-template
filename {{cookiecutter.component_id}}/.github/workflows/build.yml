@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     env:
-      flex: "./.devx-workflows/linux_amd64/flex"
+      flex: "./.devx-workflows/flex"
 
     steps:
     - uses: actions/checkout@v2
