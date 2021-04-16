@@ -1,15 +1,15 @@
 apiVersion: backstage.io/v1alpha1
 kind: Template
 metadata:
-  name: ngif-springboot-template
-  title: NGIF Spring Boot gRPC Service
+  name: devx-helloworld-springboot-template
+  title: DevX Spring Boot gRPC HelloWorld Service Template
   description: Create a simple microservice using gRPC and Spring Boot Java
   tags:
     - recommended
     - java
     - grpc
 spec:
-  owner: service@example.com
+  owner: devx@example.com
   templater: cookiecutter
   type: service
   path: '.'
@@ -21,11 +21,11 @@ spec:
       component_id:
         title: Name
         type: string
-        description: Unique name of the component
+        description: devx-helloworld-springboot-template
       description:
         title: Description
         type: string
-        description: Help others understand what this service does.
+        description: Use as the basis for a new service.
       http_port:
         title: Port
         type: integer
