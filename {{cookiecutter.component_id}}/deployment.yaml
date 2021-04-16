@@ -20,9 +20,16 @@ spec:
         backstage.io/kubernetes-id: {{cookiecutter.component_id}}
     spec:
       containers:
-      - image: springguides/demo
+      - image: demo:0.0.1-SNAPSHOT
         name: demo
         resources: {}
+        ports:
+          - containerPort: 8080 
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          periodSeconds: 5
 status: {}
 ---
 apiVersion: v1
