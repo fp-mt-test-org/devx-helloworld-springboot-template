@@ -4,7 +4,7 @@ metadata:
   creationTimestamp: null
   labels:
     app: demo
-    backstage.io/kubernetes-id: spring-boot-grpc-service
+    backstage.io/kubernetes-id: {{cookiecutter.component_id}}
   name: demo
 spec:
   replicas: 1
@@ -17,7 +17,7 @@ spec:
       creationTimestamp: null
       labels:
         app: demo
-        backstage.io/kubernetes-id: spring-boot-grpc-service
+        backstage.io/kubernetes-id: {{cookiecutter.component_id}}
     spec:
       containers:
       - image: springguides/demo
@@ -31,7 +31,7 @@ metadata:
   creationTimestamp: null
   labels:
     app: demo
-    backstage.io/kubernetes-id: spring-boot-grpc-service
+    backstage.io/kubernetes-id: {{cookiecutter.component_id}}
   name: demo
 spec:
   ports:
