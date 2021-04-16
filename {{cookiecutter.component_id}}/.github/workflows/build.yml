@@ -21,6 +21,6 @@ jobs:
       with:
         java-version: 11
     - name: Install Dependencies
-      run: sh -c "$(curl -fsSL https://github.com/fp-mt-test-org/devx-workflows/releases/latest/download/install-flex.sh)"
+      run: ./install-dev-dependencies.sh
     - name: Build
       run: $flex build
