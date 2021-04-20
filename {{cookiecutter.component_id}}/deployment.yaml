@@ -3,25 +3,26 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: demo
+    app: {{cookiecutter.component_id}}
     backstage.io/kubernetes-id: {{cookiecutter.component_id}}
-  name: demo
+  name: {{cookiecutter.component_id}}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: demo
+      app: {{cookiecutter.component_id}}
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: demo
+        app: {{cookiecutter.component_id}}
         backstage.io/kubernetes-id: {{cookiecutter.component_id}}
     spec:
       containers:
-      - image: demo:0.0.1-SNAPSHOT
-        name: demo
+      - image: {{cookiecutter.component_id}}:0.0.1-SNAPSHOT
+        imagePullPolicy: Never
+        name: {{cookiecutter.component_id}}
         resources: {}
         ports:
           - containerPort: 8080 
@@ -37,9 +38,9 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: demo
+    app: {{cookiecutter.component_id}}
     backstage.io/kubernetes-id: {{cookiecutter.component_id}}
-  name: demo
+  name: {{cookiecutter.component_id}}
 spec:
   ports:
   - name: 8080-8080
@@ -47,7 +48,7 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    app: demo
+    app: {{cookiecutter.component_id}}
   type: ClusterIP
 status:
   loadBalancer: {}

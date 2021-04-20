@@ -10,7 +10,7 @@
 
 After a successful build, you can run it like so:
 
-    docker run -p 8080:8080 demo:0.0.1-SNAPSHOT
+    docker run -p 8080:8080 {{cookiecutter.component_id}}:0.0.1-SNAPSHOT
 
 After it starts successfully, you can get a successfully http response:
 
@@ -20,5 +20,5 @@ After it starts successfully, you can get a successfully http response:
 ## Running w/ Kubernetes
 
     kubectl apply -f deployment.yaml
-    deployment.apps/demo created
-    service/demo created
+    deployment.apps/{{cookiecutter.component_id}} created
+    service/{{cookiecutter.component_id}} created
