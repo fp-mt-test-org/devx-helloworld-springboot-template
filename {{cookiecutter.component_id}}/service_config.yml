@@ -1,2 +1,2 @@
 build:
-  command: eval $(minikube docker-env) && ./mvnw spring-boot:build-image
+  command: if [ -z $CI ]; then eval $(minikube docker-env); fi && ./mvnw spring-boot:build-image
