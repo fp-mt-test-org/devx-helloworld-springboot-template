@@ -5,7 +5,7 @@ set -o pipefail
 set -o nounset
 
 echo "Installing flex..."
-sh -c "$(curl -fsSL https://github.com/fp-mt-test-org/devx-workflows/releases/latest/download/install-flex.sh)"
+bash -c "$(curl -fsSL https://github.com/fp-mt-test-org/devx-workflows/releases/latest/download/install-flex.sh)"
 
 echo "Dev dependencies installed!"
 echo ""
