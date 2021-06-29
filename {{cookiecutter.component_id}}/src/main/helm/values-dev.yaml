@@ -1,4 +1,6 @@
 config:
   host: {{cookiecutter.component_id}}.nonp-dev-4.use1.eng-nonprod.flexport.internal
   namespace: {{cookiecutter.component_id}}-dev
-  image: artifactory.flexport.io/{{cookiecutter.component_id}}-docker-dev-local/{{cookiecutter.component_id}}:0.0.1-SNAPSHOT
+  image:
+    name: artifactory.flexport.io/{{cookiecutter.component_id}}-docker-dev-local/{{cookiecutter.component_id}}
+    tag: 0.0.1-SNAPSHOT
