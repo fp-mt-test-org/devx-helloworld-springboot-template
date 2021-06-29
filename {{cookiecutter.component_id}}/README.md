@@ -1,6 +1,6 @@
 ## Install Dependencies
 
-    ./install-dev-dependencies.sh
+    ./flex.sh
 
 ## Build
 

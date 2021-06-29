@@ -6,6 +6,7 @@ metadata:
     app: {{cookiecutter.component_id}}
     backstage.io/kubernetes-id: {{cookiecutter.component_id}}
   name: {{cookiecutter.component_id}}
+  namespace: {{ .Values.config.namespace }}
 spec:
   replicas: 1
   selector:
@@ -20,8 +21,8 @@ spec:
         backstage.io/kubernetes-id: {{cookiecutter.component_id}}
     spec:
       containers:
-      - image: {{cookiecutter.component_id}}:0.0.1-SNAPSHOT
-        imagePullPolicy: Never
+      - image: {{ .Values.config.image.name }}:{{ .Values.config.image.tag }}
+        imagePullPolicy: IfNotPresent
         name: {{cookiecutter.component_id}}
         resources: {}
         ports:
@@ -32,23 +33,3 @@ spec:
             port: 8080
           periodSeconds: 5
 status: {}
----
-apiVersion: v1
-kind: Service
-metadata:
-  creationTimestamp: null
-  labels:
-    app: {{cookiecutter.component_id}}
-    backstage.io/kubernetes-id: {{cookiecutter.component_id}}
-  name: {{cookiecutter.component_id}}
-spec:
-  ports:
-  - name: 8080-8080
-    port: 8080
-    protocol: TCP
-    targetPort: 8080
-  selector:
-    app: {{cookiecutter.component_id}}
-  type: ClusterIP
-status:
-  loadBalancer: {}

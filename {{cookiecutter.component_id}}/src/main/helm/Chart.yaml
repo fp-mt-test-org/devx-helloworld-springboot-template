@@ -1,0 +1,6 @@
+apiVersion: v2
+name: {{cookiecutter.component_id}}
+description: Chart for creating {{cookiecutter.component_id}} and ingress mapping our Flexport EKS clusters
+
+type: application
+version: 0.1.0
