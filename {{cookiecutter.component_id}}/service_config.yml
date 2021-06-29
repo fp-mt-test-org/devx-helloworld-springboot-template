@@ -1,2 +1,17 @@
-build:
-  command: if [ -z $CI ]; then eval $(minikube docker-env); fi && ./mvnw spring-boot:build-image
+flex:
+  version: 0.5.0
+  workflows:
+    build:
+      command: ./mvnw spring-boot:build-image
+    deploy:
+      command: >
+        docker run
+        -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+        -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+        -e ENV=${ENV:-dev}
+        -e TAG=${TAG:-1.0.0-SNAPSHOT}
+        -v $PWD:/workdir
+        jshimko/kube-tools-aws:3.7.0
+        bash -c "cd /workdir && ./scripts/deploy.sh"
+service:
+  name: {{cookiecutter.component_id}}
