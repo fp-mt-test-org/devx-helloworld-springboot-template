@@ -11,10 +11,10 @@ jobs:
 
     env:
       flex: "./flex.sh"
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      ENV: ${{ github.event.client_payload.env }}
-      TAG: ${{ github.event.client_payload.tag }}
+      AWS_ACCESS_KEY_ID: '{{"${{ secrets.AWS_ACCESS_KEY_ID }}"}}'
+      AWS_SECRET_ACCESS_KEY: '{{"${{ secrets.AWS_SECRET_ACCESS_KEY }}"}}'
+      ENV: '{{"${{ github.event.client_payload.env }}"}}'
+      TAG: '{{"${{ github.event.client_payload.tag }}"}}'
 
     steps:
     - name: Checkout Source
