@@ -19,6 +19,4 @@ After it starts successfully, you can get a successfully http response:
 
 ## Running w/ Kubernetes
 
-    kubectl apply -f deployment.yaml
-    deployment.apps/{{cookiecutter.component_id}} created
-    service/{{cookiecutter.component_id}} created
+    flex deploy
