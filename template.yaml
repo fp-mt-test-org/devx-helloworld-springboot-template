@@ -14,10 +14,10 @@ spec:
   parameters:
     - title: Fill in template parameters
       required:
-        - component_id
+        - name
         - description
       properties:
-        component_id:
+        name:
           title: Name
           type: string
           description: Unique service name
@@ -40,8 +40,9 @@ spec:
       input:
         url: ./template
         values:
-          component_id: '{{ parameters.component_id }}'
-          java_package_name: '{{ parameters.component_id }}'
+          component_id: '{{ parameters.name }}'
+          description: '{{ parameters.description }}'
+          java_package_name: '{{ parameters.name }}'
           
     - id: provision
       name: Provisioning
@@ -50,15 +51,15 @@ spec:
         event_type: provision-project
         owner: fp-mt-test-org
         repo: development-infrastructure
-        client_payload: '{"project_name":"{{ parameters.component_id }}"}'
+        client_payload: '{"project_name":"{{ parameters.name }}"}'
 
     - id: publish
       name: Publish
       action: publish:github
       input:
         allowedHosts: ['github.com']
-        description: 'This is {{ parameters.component_id }}'
-        repoUrl: 'github.com?owner=fp-mt-test-org&repo={{ parameters.component_id }}'
+        description: 'This is {{ parameters.name }}'
+        repoUrl: 'github.com?owner=fp-mt-test-org&repo={{ parameters.name }}'
         repoVisibility: public
 
     - id: register
