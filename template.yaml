@@ -1,4 +1,4 @@
-apiVersion: backstage.io/v1alpha1
+apiVersion: backstage.io/v1beta2
 kind: Template
 metadata:
   name: devx-helloworld-springboot-template
@@ -10,24 +10,65 @@ metadata:
     - grpc
 spec:
   owner: devx@example.com
-  templater: cookiecutter
   type: service
-  path: '.'
-  schema:
-    required:
-      - component_id
-      - description
-    properties:
-      component_id:
-        title: Name
-        type: string
-        description: devx-helloworld-springboot-template
-      description:
-        title: Description
-        type: string
-        description: Use as the basis for a new service.
-      http_port:
-        title: Port
-        type: integer
-        default: 8080
-        description: The port to run the gRPC service on
+  parameters:
+    - title: Fill in template parameters
+      required:
+        - component_id
+        - description
+      properties:
+        component_id:
+          title: Name
+          type: string
+          description: Unique service name
+          ui:autofocus: true
+          ui:options:
+            rows: 5
+        description:
+          title: Description
+          type: string
+          description: Use as the basis for a new service.
+        http_port:
+          title: Port
+          type: integer
+          default: 8080
+          description: The port to run the gRPC service on
+  steps:
+    - id: fetch-base
+      name: Fetch Base
+      action: fetch:cookiecutter
+      input:
+        url: ./template
+        values:
+          component_id: '{{ parameters.component_id }}'
+          java_package_name: '{{ parameters.component_id }}'
+          
+    - id: provision
+      name: Provisioning
+      action: github:repository_dispach
+      input:
+        event_type: provision-project
+        owner: fp-mt-test-org
+        repo: development-infrastructure
+        client_payload: '{"project_name":"{{ parameters.component_id }}"}'
+
+    - id: publish
+      name: Publish
+      action: publish:github
+      input:
+        allowedHosts: ['github.com']
+        description: 'This is {{ parameters.component_id }}'
+        repoUrl: 'github.com?owner=fp-mt-test-org&repo={{ parameters.component_id }}'
+        repoVisibility: public
+
+    - id: register
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: '{{ steps.publish.output.repoContentsUrl }}'
+        catalogInfoPath: '/catalog-info.yaml'
+
+  # some outputs which are saved along with the job for use in the frontend
+  output:
+    remoteUrl: '{{ steps.publish.output.remoteUrl }}'
+    entityRef: '{{ steps.register.output.entityRef }}'
