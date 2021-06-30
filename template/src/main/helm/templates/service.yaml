@@ -6,7 +6,7 @@ metadata:
     app: {{cookiecutter.component_id}}
     backstage.io/kubernetes-id: {{cookiecutter.component_id}}
   name: {{cookiecutter.component_id}}
-  namespace: {{ .Values.config.namespace }}
+  namespace: '{{"{{ .Values.config.namespace }}"}}'
 spec:
   ports:
   - name: 8080-8080

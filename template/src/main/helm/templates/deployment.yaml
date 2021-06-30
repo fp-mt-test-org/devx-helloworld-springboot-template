@@ -21,7 +21,7 @@ spec:
         backstage.io/kubernetes-id: {{cookiecutter.component_id}}
     spec:
       containers:
-      - image: {{ .Values.config.image.name }}:{{ .Values.config.image.tag }}
+      - image: '{{"{{ .Values.config.image.name }}"}}':'{{"{{ .Values.config.image.tag }}"}}'
         imagePullPolicy: IfNotPresent
         name: {{cookiecutter.component_id}}
         resources: {}
