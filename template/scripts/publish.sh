@@ -33,8 +33,13 @@ else
     maturity_level="snapshot"
 fi
 
-echo "Next Version: ${next_version}"
 echo
+echo "Version: ${next_version}"
+echo
+
+# Using current dir name as service_name for short term...
+# Long term, a repo may host multiple services...
+service_name="${PWD##*/}"
 
 artifactory_hostname=$(basename "${artifactory_base_url}")
 artifact_repository_name="${service_name}-docker-${maturity_level}-local"
