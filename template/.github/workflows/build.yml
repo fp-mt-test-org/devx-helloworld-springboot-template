@@ -14,9 +14,9 @@ jobs:
     env:
       flex: "./flex.sh"
 
-    artifactory_base_url: ${{ secrets.artifactory_base_url }}
-    artifactory_username: ${{ secrets.artifactory_username }}
-    artifactory_password: ${{ secrets.artifactory_password }}
+      artifactory_base_url: ${{ secrets.artifactory_base_url }}
+      artifactory_username: ${{ secrets.artifactory_username }}
+      artifactory_password: ${{ secrets.artifactory_password }}
 
     steps:
     - name: Checkout Source
