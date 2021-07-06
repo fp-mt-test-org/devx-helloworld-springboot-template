@@ -1,5 +1,5 @@
 flex:
-  version: 0.5.0
+  version: 0.5.6
   workflows:
     build:
       command: ./mvnw spring-boot:build-image
@@ -13,5 +13,7 @@ flex:
         -v $PWD:/workdir
         jshimko/kube-tools-aws:3.7.0
         bash -c "cd /workdir && ./scripts/deploy.sh"
+    publish:
+      command: service_name={{cookiecutter.component_id}} scripts/publish.sh
 service:
   name: {{cookiecutter.component_id}}
