@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>{{cookiecutter.component_id}}</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${revision}</version>
 	<name>{{cookiecutter.component_id}}</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>

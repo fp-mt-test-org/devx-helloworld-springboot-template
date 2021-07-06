@@ -2,7 +2,7 @@ flex:
   version: 0.5.6
   workflows:
     build:
-      command: ./mvnw spring-boot:build-image
+      command: scripts/build.sh
     deploy:
       command: >
         docker run
