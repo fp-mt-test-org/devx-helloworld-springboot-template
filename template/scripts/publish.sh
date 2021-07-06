@@ -9,10 +9,16 @@ brew install caarlos0/tap/svu
 echo "Install complete."
 echo
 
+tags=$(git tag)
+
+if [[ $tags == "" ]]; then
+    next_version='v0.0.1'
+else
+    next_version="$(svu n)"
+fi
+
 default_branch=$([ -f .git/refs/heads/master ] && echo master || echo main)
 current_branch=$(git branch --show-current)
-
-next_version="$(svu n)"
 
 if [[ "${default_branch}" == "${current_branch}" ]]; then
     maturity_level="dev"
