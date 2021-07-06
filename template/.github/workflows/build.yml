@@ -27,4 +27,4 @@ jobs:
       run: $flex build
     - name: Publish
     run: GITHUB_TOKEN={{"${{secrets.GITHUB_TOKEN}}"}} scripts/publish.sh
-    if: ${{ github.ref == 'refs/heads/master' }}
+    if: {{"${{github.ref == 'refs/heads/master'}}"}}
