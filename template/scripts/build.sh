@@ -4,24 +4,27 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-default_branch=$([ -f .git/refs/heads/main ] && echo main || echo master)
-current_branch=$(git branch --show-current)
-
 echo "Installing svu..."
 brew install caarlos0/tap/svu
 echo "Install complete."
 echo
 
-if [[ "${default_branch}" == "${current_branch}" ]]; then
-    next_version="$(svu n)"
+tags=$(git tag)
+
+if [[ $tags == "" ]]; then
+    next_version='v0.0.1'
 else
-    next_version="$(svu n)-SNAPSHOT"
+    next_version="$(svu n)"
 fi
 
-echo "Next Version: ${next_version}"
-echo
+default_branch=$([ -f .git/refs/heads/master ] && echo master || echo main)
+current_branch=$(git branch --show-current)
 
-./mvnw -Drevision="${next_version}" spring-boot:build-image
+if ! [[ "${default_branch}" == "${current_branch}" ]]; then
+    next_version="${next_version}-SNAPSHOT"
+fi
+
+./mvnw spring-boot:build-image -Drevision="${next_version}"
 
 # Using current dir name as service_name for short term...
 # Long term, a repo may host multiple services...
