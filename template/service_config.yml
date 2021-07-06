@@ -1,7 +1,10 @@
 flex:
   version: 0.5.6
   workflows:
+    setup-repo:
+      command: .ngif/setup-repo.sh
     build:
+      depends-on: setup-repo
       command: ./mvnw spring-boot:build-image
     deploy:
       command: >
