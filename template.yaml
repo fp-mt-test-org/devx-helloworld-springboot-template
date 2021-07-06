@@ -36,8 +36,6 @@ spec:
         url: ./template
         values:
           component_id: '{{ parameters.name }}'
-          destination: '{{ parseRepoUrl parameters.repoUrl }}'
-          java_package_name: '{{ parameters.name }}'
           http_port: '{{ parameters.http_port }}'
           
     - id: provision
