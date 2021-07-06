@@ -1,8 +1,8 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: {{cookiecutter.component_id | jsonify}}
-  description: {{cookiecutter.description | jsonify}}
+  name: {{cookiecutter.component_id}}
+  description: "This project was created from a template."
   annotations:
     github.com/project-slug: {{cookiecutter.destination.owner + "/" + cookiecutter.destination.repo}}
     backstage.io/techdocs-ref: url:{{"https://" + cookiecutter.destination.host + "/" + cookiecutter.destination.owner + "/" + cookiecutter.destination.repo}}
@@ -10,4 +10,3 @@ metadata:
 spec:
   type: service
   lifecycle: experimental
-  owner: {{cookiecutter.owner | jsonify}}
