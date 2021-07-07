@@ -1,0 +1,7 @@
+'{{"{{ range $.Values.config.enabled '}}"}}'
+  '{{"{{ $values := ( dict "Values" $.Values "Release" $.Release "slot" . ) '}}"}}'
+  '{{"{{ template "deployment" $values '}}"}}'
+---
+  '{{"{{ template "service" $values '}}"}}'
+---
+'{{"{{ end '}}"}}'

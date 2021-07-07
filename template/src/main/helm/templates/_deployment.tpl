@@ -1,3 +1,4 @@
+'{{"{{- define "deployment" }}"}}'
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -5,8 +6,8 @@ metadata:
   labels:
     app: {{cookiecutter.component_id}}
     backstage.io/kubernetes-id: {{cookiecutter.component_id}}
-  name: {{cookiecutter.component_id}}
-  namespace: '{{"{{ .Values.config.namespace }}"}}'
+    slot: '{{"{{ .slot }}"}}'
+  name: {{cookiecutter.component_id}}-'{{"{{ .slot }}"}}'
 spec:
   replicas: 1
   selector:
@@ -19,6 +20,7 @@ spec:
       labels:
         app: {{cookiecutter.component_id}}
         backstage.io/kubernetes-id: {{cookiecutter.component_id}}
+        slot: '{{"{{ .slot }}"}}'
     spec:
       containers:
       - image: '{{"{{ .Values.config.image.name }}"}}':'{{"{{ .Values.config.image.tag }}"}}'
@@ -33,3 +35,4 @@ spec:
             port: 8080
           periodSeconds: 5
 status: {}
+'{{"{{- end }}"}}'
