@@ -20,7 +20,7 @@ serving_slot=${serving_slot:-blue}
 non_serving_slot=$([ "$serving_slot" == "blue" ] && echo "green" || echo "blue")
 helm upgrade --install --atomic {{cookiecutter.component_id}} src/main/helm -f src/main/helm/values.yaml -n $namespace \
     --create-namespace --set config.servingSlot=$serving_slot --set config.nonServingSlot=$non_serving_slot \
-    --set "config.enabled={$serving_slot,$non_serving_slot}"
+    --set "config.enabled={$serving_slot,$non_serving_slot}" --set config.image.tag=$TAG
 
 echo "--- Post-deploy validation"
 test_exit=0
@@ -33,5 +33,5 @@ fi
 
 serving_slot=$([ "$test_exit" -eq 0 ] && echo $non_serving_slot || echo $serving_slot)
 helm upgrade --install --atomic {{cookiecutter.component_id}} src/main/helm -f src/main/helm/values.yaml -n $namespace \
-    --set config.servingSlot=$serving_slot --set "config.enabled={$serving_slot}"
+    --set config.servingSlot=$serving_slot --set "config.enabled={$serving_slot}" --set config.image.tag=$TAG
 exit $test_exit
