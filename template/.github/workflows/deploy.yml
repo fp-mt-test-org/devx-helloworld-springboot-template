@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   repository_dispatch:
-    types: [published]
+    types: [artifact-published]
 
 jobs:
   deploy:
