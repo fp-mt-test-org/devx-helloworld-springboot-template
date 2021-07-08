@@ -2,7 +2,6 @@ apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: {{cookiecutter.component_id}}
-  namespace: '{{"{{ .Values.config.namespace }}"}}'
   annotations:
     external-dns.alpha.kubernetes.io/hostname: '{{"{{ .Values.config.host }}"}}'
 spec:
@@ -17,4 +16,4 @@ spec:
         - destination:
             port:
               number: 8080
-            host: {{cookiecutter.component_id}}
+            host: {{cookiecutter.component_id}}-'{{"{{ .Values.config.servingSlot }}"}}'
