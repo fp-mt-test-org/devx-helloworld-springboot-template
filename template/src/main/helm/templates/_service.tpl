@@ -1,4 +1,4 @@
-{{{{- define "service" }}}}
+{{ "{{" }}- define "service" {{ "}}" }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -6,8 +6,8 @@ metadata:
   labels:
     app: {{cookiecutter.component_id}}
     backstage.io/kubernetes-id: {{cookiecutter.component_id}}
-    slot: {{{{ .slot }}}}
-  name: {{cookiecutter.component_id}}-{{{{ .slot }}}}
+    slot: {{ "{{" }} .slot {{ "}}" }}
+  name: {{cookiecutter.component_id}}-{{ "{{" }} .slot {{ "}}" }}
 spec:
   ports:
   - name: 8080-8080
@@ -15,5 +15,5 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    slot: {{{{ .slot }}}}
-{{{{- end }}}}
+    slot: {{ "{{" }} .slot {{ "}}" }}
+{{ "{{" }}- end {{ "}}" }}
