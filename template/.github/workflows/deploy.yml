@@ -12,14 +12,14 @@ jobs:
     env:
       flex: "./flex.sh"
       
-      gcloud_account: ${{ secrets.gcloud_account }}
-      gcloud_project: ${{ secrets.gcloud_project }}
-      gcloud_service_account: ${{ secrets.gcloud_service_account }}
+      gcloud_account: '{{"${{ secrets.gcloud_account }}"}}'
+      gcloud_project: '{{"${{ secrets.gcloud_project }}"}}'
+      gcloud_service_account: '{{"${{ '{{"${{ secrets.gcloud_project }}"}}' }}"}}'
 
       # AWS_ACCESS_KEY_ID: '${{ secrets.AWS_ACCESS_KEY_ID }}'
       # AWS_SECRET_ACCESS_KEY: '${{ secrets.AWS_SECRET_ACCESS_KEY }}'
       ENV: 'dev'
-      TAG: '${{ github.event.client_payload.tag }}'
+      TAG: '{{"${{ github.event.client_payload.tag }}"}}'
 
     steps:
     - name: Checkout Source
@@ -30,6 +30,6 @@ jobs:
         path: |
           google-cloud-sdk
           /home/linuxbrew/.linuxbrew/Cellar
-        key: ${{ runner.os }}-${{ hashFiles('**/lockfiles') }}
+        key: {{"${{ runner.os }}"}}-{{"${{ hashFiles('**/lockfiles') }}"}}
     - name: Deploy
       run: $flex deploy
