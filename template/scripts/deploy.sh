@@ -2,11 +2,7 @@
 
 set -e
 
-echo "--- Assume infra_builder role for account EngDev04 238801556584"
-OUTPUT=$(aws sts assume-role --role-arn arn:aws:iam::238801556584:role/infra_builder --role-session-name cd)
-export AWS_ACCESS_KEY_ID=$(echo $OUTPUT | jq ".Credentials.AccessKeyId" | tr -d '"')
-export AWS_SECRET_ACCESS_KEY=$(echo $OUTPUT | jq ".Credentials.SecretAccessKey" | tr -d '"')
-export AWS_SESSION_TOKEN=$(echo $OUTPUT | jq ".Credentials.SessionToken" | tr -d '"')
+./scripts/setup-kubectl-for-gcloud.sh
 
 echo "--- Update kubectl config file us-east-1 region"
 aws eks update-kubeconfig --name fpff-nonprod-use1-b --region us-east-1
