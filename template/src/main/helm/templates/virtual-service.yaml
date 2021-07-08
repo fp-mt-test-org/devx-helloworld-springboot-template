@@ -3,10 +3,10 @@ kind: VirtualService
 metadata:
   name: {{cookiecutter.component_id}}
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: '{{"{{ .Values.config.host }}"}}'
+    external-dns.alpha.kubernetes.io/hostname: {{{{ .Values.config.host }}}}
 spec:
   hosts:
-    - '{{"{{ .Values.config.host }}"}}'
+    - {{{{ .Values.config.host }}}}
   gateways:
     - istio-system/public-gateway
   http:
@@ -16,4 +16,4 @@ spec:
         - destination:
             port:
               number: 8080
-            host: {{cookiecutter.component_id}}-'{{"{{ .Values.config.servingSlot }}"}}'
+            host: {{cookiecutter.component_id}}-{{{{ .Values.config.servingSlot }}}}
