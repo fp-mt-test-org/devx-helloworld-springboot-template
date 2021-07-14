@@ -16,8 +16,6 @@ jobs:
       gcloud_project: '{{"${{ secrets.gcloud_project }}"}}'
       gcloud_service_account: '{{"${{ secrets.gcloud_service_account }}"}}'
 
-      # AWS_ACCESS_KEY_ID: '${{ secrets.AWS_ACCESS_KEY_ID }}'
-      # AWS_SECRET_ACCESS_KEY: '${{ secrets.AWS_SECRET_ACCESS_KEY }}'
       ENV: 'dev'
       TAG: '{{"${{ github.event.client_payload.tag }}"}}'
 
