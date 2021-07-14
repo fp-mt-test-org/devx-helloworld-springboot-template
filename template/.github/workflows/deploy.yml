@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   repository_dispatch:
-    types: [published]
+    types: [artifact-published]
 
 jobs:
   deploy:
@@ -22,5 +22,12 @@ jobs:
     steps:
     - name: Checkout Source
       uses: actions/checkout@v2
+    - name: Cache files
+      uses: actions/cache@v2
+      with:
+        path: |
+          google-cloud-sdk
+          /home/linuxbrew/.linuxbrew/Cellar
+        key: {{"${{ runner.os }}"}}-{{"${{ hashFiles('**/lockfiles') }}"}}
     - name: Deploy
       run: $flex deploy
