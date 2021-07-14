@@ -4,7 +4,15 @@ flex:
     build:
       command: scripts/build.sh
     deploy:
-      command: ./scripts/deploy.sh
+      command: >
+        docker run
+        -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+        -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+        -e ENV=${ENV:-dev}
+        -e TAG=${TAG:-1.0.0-SNAPSHOT}
+        -v $PWD:/workdir
+        jshimko/kube-tools-aws:3.7.0
+        bash -c "cd /workdir && ./scripts/deploy.sh"
     publish:
       command: service_name={{cookiecutter.component_id}} scripts/publish.sh
 service:
