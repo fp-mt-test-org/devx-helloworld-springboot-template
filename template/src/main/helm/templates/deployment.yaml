@@ -5,7 +5,7 @@ metadata:
   labels:
     app: {{cookiecutter.component_id}}
     backstage.io/kubernetes-id: {{cookiecutter.component_id}}
-  name: {{cookiecutter.component_id}}-{{ "{{" }} .slot {{ "}}" }}
+  name: {{cookiecutter.component_id}}
   namespace: '{{"{{ .Values.config.namespace }}"}}'
 spec:
   replicas: 1
