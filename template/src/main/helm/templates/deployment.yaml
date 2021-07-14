@@ -5,7 +5,8 @@ metadata:
   labels:
     app: {{cookiecutter.component_id}}
     backstage.io/kubernetes-id: {{cookiecutter.component_id}}
-  name: {{cookiecutter.component_id}}
+    slot: {{ "{{" }} .slot {{ "}}" }}
+  name: {{cookiecutter.component_id}}-{{ "{{" }} .slot {{ "}}" }}
   namespace: '{{"{{ .Values.config.namespace }}"}}'
 spec:
   replicas: 1
@@ -21,7 +22,7 @@ spec:
         backstage.io/kubernetes-id: {{cookiecutter.component_id}}
     spec:
       containers:
-      - image: '{{"{{ .Values.config.image.name }}"}}':'{{"{{ .Values.config.image.tag }}"}}'
+      - image: {{ "{{" }} .Values.config.image.name {{ "}}" }}:{{ "{{" }} .Values.config.image.tag {{ "}}" }}
         imagePullPolicy: IfNotPresent
         name: {{cookiecutter.component_id}}
         resources: {}
