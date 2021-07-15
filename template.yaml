@@ -45,7 +45,7 @@ spec:
         event_type: provision-service
         owner: fp-mt-test-org
         repo: development-infrastructure
-        client_payload: '{"service_name":"{{ parameters.name }}-dev"}'
+        client_payload: '{"service_name":"{{ parameters.name }}"}'
 
     - id: publish
       name: Publish
