@@ -2,5 +2,5 @@ config:
   host: {{cookiecutter.component_id}}.nonp-dev-4.use1.eng-nonprod.flexport.internal
   namespace: {{cookiecutter.component_id}}-service-dev
   image:
-    name: artifactory.flexport.io/{{cookiecutter.component_id}}-docker-dev-local/{{cookiecutter.component_id}}
-    tag: 0.0.1-SNAPSHOT
+    name: uswest2fpmt.jfrog.io/{{cookiecutter.component_id}}-docker-dev-local/{{cookiecutter.component_id}}
+    tag: v0.0.1
