@@ -25,10 +25,10 @@ spec:
         name: {{cookiecutter.component_id}}
         resources: {}
         ports:
-          - containerPort: 5050 
+          - containerPort: 8080 
         readinessProbe:
           httpGet:
             path: /actuator/health
-            port: 5050
+            port: 8080
           periodSeconds: 5
 status: {}

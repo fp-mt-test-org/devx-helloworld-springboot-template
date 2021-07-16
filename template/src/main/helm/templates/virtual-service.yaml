@@ -16,5 +16,5 @@ spec:
       route:
         - destination:
             port:
-              number: 5050
+              number: 8080
             host: {{cookiecutter.component_id}}
