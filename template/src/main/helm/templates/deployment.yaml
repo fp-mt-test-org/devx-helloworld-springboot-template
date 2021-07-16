@@ -13,8 +13,6 @@ spec:
     matchLabels:
       app: {{cookiecutter.component_id}}
   strategy: {}
-  imagePullSecrets:
-    - name: artifact-registry
   template:
     metadata:
       creationTimestamp: null
