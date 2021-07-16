@@ -2,5 +2,5 @@ config:
   host: {{cookiecutter.component_id}}
   namespace: {{cookiecutter.component_id}}-service-dev
   image:
-    name: vad1mo/hello-world-rest
-    tag: v0.0.1
+    name: uswest2fpmt.jfrog.io/default-docker-virtual/vad1mo/hello-world-rest
+    tag: latest
