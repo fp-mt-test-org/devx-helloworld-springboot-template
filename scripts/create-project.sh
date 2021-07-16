@@ -25,4 +25,8 @@ response=$(curl -s \
 if [[ $response =~ \{\"id\"\:\"(.+)\"\} ]]; then
     create_request_id="${BASH_REMATCH[1]}"
     echo "${backstage_backend_base_url}/create/tasks/${create_request_id}"
+else
+    echo "ERROR: id field not found in response:"
+    echo "${response}"
+    exit 1
 fi

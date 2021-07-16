@@ -20,7 +20,7 @@ spec:
         app: {{cookiecutter.component_id}}
     spec:
       containers:
-      - image: {{ "{{" }} .Values.config.image.name {{ "}}" }}:{{ "{{" }} .Values.config.image.tag {{ "}}" }}
+      - image: vad1mo/hello-world-rest
         imagePullPolicy: IfNotPresent
         name: {{cookiecutter.component_id}}
         resources: {}
