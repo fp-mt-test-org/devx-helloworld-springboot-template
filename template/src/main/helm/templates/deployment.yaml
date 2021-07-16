@@ -31,6 +31,4 @@ spec:
             path: /actuator/health
             port: 5050
           periodSeconds: 5
-      imagePullSecrets:
-        - name: artifact-registry
 status: {}
