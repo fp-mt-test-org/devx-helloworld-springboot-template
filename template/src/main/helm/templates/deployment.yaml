@@ -20,7 +20,7 @@ spec:
         app: {{cookiecutter.component_id}}
     spec:
       containers:
-      - image: uswest2fpmt.jfrog.io/default-docker-virtual/vad1mo/hello-world-rest
+      - image: {{ "{{" }} .Values.config.image.name {{ "}}" }}:{{ "{{" }} .Values.config.image.tag {{ "}}" }}
         imagePullPolicy: IfNotPresent
         name: {{cookiecutter.component_id}}
         resources: {}
