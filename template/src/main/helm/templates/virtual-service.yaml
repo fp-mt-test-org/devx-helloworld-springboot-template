@@ -7,7 +7,7 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: '{{"{{ .Values.config.host }}"}}'
 spec:
   hosts:
-    - '{{"{{ .Values.config.host }}"}}'
+    - '*'
   gateways:
     - istio-system/public-gateway
   http:
@@ -16,5 +16,5 @@ spec:
       route:
         - destination:
             port:
-              number: 8080
+              number: 5050
             host: {{cookiecutter.component_id}}
